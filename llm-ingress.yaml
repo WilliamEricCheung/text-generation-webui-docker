@@ -17,3 +17,7 @@ spec:
             name: text-generation-webui-nodeport
             port:
               number: 80
+  - tls:
+    hosts:
+    - chat.act.buaa.edu.cn
+    secretName: tls-secret

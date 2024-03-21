@@ -13,15 +13,23 @@ spec:
     metadata:
       labels:
         app: text-generation-webui # has to match .spec.selector.matchLabels
+
     spec:
+      nodeSelector:
+        kubenetes.io/hostname: dell-65
       containers:
         - name: text-generation-webui
           image: atinoda/text-generation-webui:base-nvidia # ref: https://hub.docker.com/r/atinoda/text-generation-webui
+          resources:
+            limits:
+              nvidia.com/gpu: 1
           ports:
             - containerPort: 7860 # Web UI port
             - containerPort: 5000 # API port
             - containerPort: 5005 # Streaming port
           env:
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "GPU-5ae611af-8174-c5e5-7db2-d7fe2ec69ec1"
             - name: EXTRA_LAUNCH_ARGS
               value: "--listen --verbose --api --extensions api --gpus all"
             - name: SECRET_KEY
