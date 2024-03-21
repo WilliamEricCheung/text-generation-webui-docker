@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  keyring: CltjbGllbnQuYWRtaW5dCglrZXkgPSBBUUNlSGc5bEU2YTdLaEFBTEJzWEdoZkE0NTkyQ2F2ZWJKYy9FZz09CgljYXBzIG1kcyA9ICJhbGxvdyAqIgoJY2FwcyBtb24gPSAiYWxsb3cgKiIKCWNhcHMgb3NkID0gImFsbG93ICoiCgljYXBzIG1nciA9ICJhbGxvdyAqIgo=
+kind: Secret
+metadata:
+  name: rook-ceph-admin-keyring
+  namespace: llama

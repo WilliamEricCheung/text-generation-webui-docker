@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: llm-data-pvc
+spec:
+  resources:
+    requests:
+      storage: 50Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "" # 空字符串，此时不会申请 sc 的服务，会根据已有的 PV 进行绑定。

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: llm-data-pv
+spec:
+  capacity:
+    storage: 50Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  cephfs:
+    monitors:
+      - "10.1.55.73:6789" # Ceph Monitor 的 IP 地址和端口
+      - "10.1.37.163:6789" # Ceph Monitor 的 IP 地址和端口
+      - "10.1.50.182:6789" # Ceph Monitor 的 IP 地址和端口
+    user: "admin" # Ceph 用户名
+    secretRef:
+      name: rook-ceph-admin-keyring # 指向包含 Ceph 密钥的 Secret 的名称
+    readOnly: false
+    path: "/LLM_data" # CephFS 的挂载路径
